@@ -1,0 +1,16 @@
+cat <<EOF > ~/wokoon/requirements.txt
+flask==2.0.1
+gunicorn==20.1.0
+wit==6.0.0
+tensorflow==2.8.0
+numpy==1.22.0
+pandas==1.4.0
+librosa==0.9.2
+matplotlib==3.5.2
+scikit-learn==1.0.2
+pyAudioAnalysis==0.3.14
+requests==2.28.1
+chardet==5.0.0
+colorlog==6.6.0
+progressbar2==4.0.0
+EOF
