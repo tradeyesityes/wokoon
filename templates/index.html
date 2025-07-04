@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+	<meta charset="utf-8"> 
+
+	<title>Wokoon.io | Speech Recognition System</title><meta name="description" content="We are Uncommon: a bunch of rebellious, curious, & passionate people using design to create value." /><meta property="og:title" content="Uncommon | Strategic Design" /><meta property="og:description" content="We are Uncommon: a bunch of rebellious, curious, & passionate people using design to create value." /><meta name="keywords" content="value, insightful, foresightful, responsive, design thinking" />
+	<meta property="og:image" content="../uncommon.jpg" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/x-icon" href="../favicon-32x32.png">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:200,300,400,500,700" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/flexslider.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',  filename='css/stylesf9e3.css') }}">
+
+
+	
+<!-- END HEADER FIRST PART -->	
+
+	
+<!-- HEADER SECOND PART-->
+
+    
+<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'../../www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-MRZ2GMN');</script>
+<!-- End Google Tag Manager -->
+
+	<!-- <script>
+		function show_modal_no_more() {
+			// console.log("entra");
+		  	jQuery('.info-cookie').hide();
+		  	document.cookie = "cookie=1; expires=Thu, 18 Dec 2031 12:00:00 UTC";
+		}
+	</script> -->
+</head>
+<body>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MRZ2GMN"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
+
+<!-- END HEADER SECOND PART -->	
+
+	
+			<!-- <div class="info-cookie">
+			Utilizamos cookies propias para mejorar la experiencia del usuario a través de su navegación. Si continúas navegando aceptas su uso. 
+			<a href="cookies/index.html" target="_blank">Política de cookies.</a><br/><br/>
+ 
+			<div class="swal-button-container">
+
+			    <button class="swal-button swal-button--confirm" onclick="show_modal_no_more()">Entendido</button>
+
+			    <div class="swal-button__loader">
+			      <div></div>
+			      <div></div>
+			      <div></div>
+			    </div>
+
+			</div>
+		</div>
+	-->
+
+<!-- <div class="info-legal">
+
+	<div class="candado"></div>
+
+	<a href="#" class="close-legal" onclick="event.preventDefault(); jQuery('.info-legal').hide();">X</a>
+
+	<h2>Prometemos cuidar tus datos como mereces y siempre como tu nos digas.</h2>
+
+	<p>En cumplimiento de lo establecido en el Reglamento General de Protección de Datos, queremos informarte sobre el buen uso que haremos de tus datos:</p>
+
+	<h3>Responsable:</h3>
+	<p>UNCOMMON BUSINESS S.A. de C.V.</p>
+
+	<h3>Finalidad:</h3>
+	<p>Mantenerte informado sobre novedades que puedan ser siempre de tu interés.</p>
+
+	<h3>Destinatarios:</h3>
+	<p>No se cederán datos a terceros salvo obligación legal.</p>
+
+	<h3>Derechos:</h3>
+
+	<p>Por supuesto tendrás derecho, entre otros a acceder, rectificar, limitar y suprimir tus datos.</p>
+		
+</div>	 -->
+	
+		<div class="wrapper_header">
+		<div id="img-container" bg-glitch="pantalla_p.html"></div>
+		<canvas id="noise"></canvas>
+		<div class="header">
+			<div>
+				
+				
+			</div>
+			<br><br>
+
+			<div class="header_text unselectable blur" unselectable="yes" onselectstart="return false;">
+				<figure>
+				<img class="poster" src="{{ url_for('static',filename='images/wokoon_logo.png')}}" style="width: 80%;">
+				</figure>
+				 <ul>
+					<li><span class="fragment_text">Your Stuttering is like an </span><span class="word_action" data-id="rebel">iceberg</span><span class="fragment_text"></span></li>
+					<li><span class="fragment_text">by far the largest part is</span> <span class="fragment_text"></span> <span class="word_action" data-id="passionate">underneath</span> <span class="fragment_text"></span></li>
+					<!-- <li><span class="fragment_text">design to</span> <span class="word_action" data-id="meaningful">create value</span><span class="fragment_text">.</span></li> -->
+				</ul> 
+			</div>
+		</div>
+		<div id="container_rebel" class="container_rebel" style="visibility: hidden;">
+			<video id="video_01" playsinline webkit-playsinline width="1280" height="720" preload="auto" loop="" muted="" poster="#">
+				<source src="http://noescomun.com/wp-content/themes/uncommon/videos/rebel.mp4" type="video/mp4">
+			</video>
+			<video id="video_02" playsinline webkit-playsinline width="1280" height="720" preload="auto" loop="" muted="" poster="#">
+				<source src="http://noescomun.com/wp-content/themes/uncommon/videos/passionate.mp4" type="video/mp4">
+			</video>
+			<video id="video_03" playsinline webkit-playsinline width="1280" height="720" preload="auto" loop="" muted="" poster="#">
+				<source src="http://noescomun.com/wp-content/themes/uncommon/videos/createvalue.mp4" type="video/mp4">
+			</video>
+		</div>
+		<div class="container_curious">
+			<canvas id="game">
+				<div id="unsupported">
+			    	Sorry, this example cannot be run because your browser does not support the &lt;canvas&gt; element
+			    </div>
+			</canvas>
+		</div>
+	</div>		<header>
+			<nav>
+				<ul>
+					<li><a href="/" title="What we do" class="">What we do</a></li>
+          			<li><a href="/demo" title="Our work" class="">Demos</a></li>
+          			<li><a href="/" title="Our ideas" class="">Our ideas</a></li>
+          			<li><a href="/" title="Who we are" class="">Who we are</a></li>
+          			<li><a href="/" title="Who we are" class="">Blog</a></li>
+
+				</ul>
+			 </nav>
+		</header>
+		
+			<div class="logo">
+
+			<a href="http://noescomun.com/">
+				<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="416px" height="70px" viewBox="0 0 416 70" enable-background="new 0 0 416 70" xml:space="preserve">
+					 <path fill-rule="evenodd" clip-rule="evenodd" fill="#fff" d="M113.366,42.28c0,4.226-2.574,6.732-6.496,6.732
+						c-3.949,0-6.447-2.506-6.447-6.732V18.491h-7.297v24.057c0,7.763,6.08,12.839,13.744,12.839c7.646,0,13.725-5.076,13.725-12.839
+						V18.491h-7.229V42.28z"/>
+					 <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fff" points="152.209,40.901 137.409,18.491 130.918,18.491
+						130.918,55.082 138.215,55.082 138.215,32.619 152.979,55.082 159.497,55.082 159.497,18.491 152.209,18.491 "/>
+					 <path fill-rule="evenodd" clip-rule="evenodd" fill="#fff" d="M182.928,24.552c3.66,0,5.551,2.261,6.285,5.192h7.403
+						c-1.325-7.663-6.787-11.576-13.744-11.576c-4.095,0-7.448,1.45-10.062,4.016c-3.789,3.702-3.686,8.277-3.686,14.598
+						c0,6.321-0.104,10.888,3.686,14.603c2.613,2.561,5.967,4.012,10.062,4.012c6.912,0,12.419-3.908,13.744-11.568h-7.403
+						c-0.734,2.928-2.625,5.184-6.285,5.184c-1.992,0-3.609-0.715-4.656-1.898c-1.424-1.539-1.844-3.285-1.844-10.331
+						c0-7.038,0.42-8.783,1.844-10.328C179.319,25.268,180.936,24.552,182.928,24.552"/>
+					 <path fill-rule="evenodd" clip-rule="evenodd" fill="#fff" d="M217.622,18.169c-4.248,0-7.494,1.45-10.117,4.015
+						c-3.779,3.702-3.672,8.277-3.672,14.599c0,6.321-0.107,10.895,3.672,14.602c2.623,2.57,5.869,4.002,10.117,4.002
+						c4.252,0,7.439-1.432,10.072-4.002c3.76-3.707,3.725-8.281,3.725-14.602c0-6.322,0.035-10.897-3.725-14.599
+						C225.062,19.619,221.874,18.169,217.622,18.169 M222.278,47.064c-1.039,1.178-2.66,1.947-4.656,1.947s-3.672-0.77-4.709-1.947
+						c-1.424-1.543-1.787-3.244-1.787-10.282c0-7.033,0.363-8.739,1.787-10.27c1.037-1.191,2.713-1.961,4.709-1.961
+						s3.617,0.77,4.656,1.961c1.422,1.531,1.844,3.237,1.844,10.27C224.122,43.82,223.7,45.521,222.278,47.064"/>
+				   <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fff" points="257.983,38.278 248.241,18.491 241.052,18.491
+						241.052,55.082 248.341,55.082 248.341,33.748 255.513,47.629 260.454,47.629 267.571,33.748 267.571,55.082 274.868,55.082
+						274.868,18.491 267.679,18.491 "/>
+				   <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fff" points="302.696,38.278 292.954,18.491 285.765,18.491
+						285.765,55.082 293.044,55.082 293.044,33.748 300.243,47.629 305.157,47.629 312.284,33.748 312.284,55.082 319.591,55.082
+						319.591,18.491 312.396,18.491 "/>
+					 <path fill-rule="evenodd" clip-rule="evenodd" fill="#fff" d="M343.003,18.169c-4.248,0-7.494,1.45-10.107,4.015
+						c-3.787,3.702-3.68,8.277-3.68,14.599c0,6.321-0.107,10.895,3.68,14.602c2.613,2.57,5.859,4.002,10.107,4.002
+						c4.254,0,7.439-1.432,10.055-4.002c3.787-3.707,3.742-8.281,3.742-14.602c0-6.322,0.045-10.897-3.742-14.599
+						C350.442,19.619,347.257,18.169,343.003,18.169 M347.667,47.064c-1.047,1.178-2.672,1.947-4.664,1.947
+						c-1.996,0-3.662-0.77-4.723-1.947c-1.41-1.543-1.773-3.244-1.773-10.282c0-7.033,0.363-8.739,1.773-10.27
+						c1.061-1.191,2.727-1.961,4.723-1.961c1.992,0,3.617,0.77,4.664,1.961c1.406,1.531,1.828,3.237,1.828,10.27
+						C349.495,43.82,349.073,45.521,347.667,47.064"/>
+					 <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fff" points="387.858,18.491 387.858,40.901 373.077,18.491
+						366.573,18.491 366.573,55.082 373.864,55.082 373.864,32.619 388.634,55.082 395.138,55.082 395.138,18.491 "/>
+					 <path fill-rule="evenodd" clip-rule="evenodd" fill="#fff" d="M48.002,9.618c-14.98,0-27.14,12.092-27.14,26.985
+						c0,14.935,12.159,27.013,27.14,27.013c14.996,0,27.146-12.078,27.146-27.013C75.148,21.709,62.999,9.618,48.002,9.618
+					 	M48.002,59.662c-12.813,0-23.217-10.346-23.217-23.085c0-12.759,10.403-23.091,23.217-23.091c12.811,0,23.207,10.332,23.207,23.091
+						C71.209,49.316,60.813,59.662,48.002,59.662"/>
+					 <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fff" points="57.178,24.812 51.305,30.658 36.417,30.658 36.417,34.517
+						47.428,34.517 43.533,38.394 36.417,38.394 36.417,42.217 39.688,42.217 36.399,45.494 39.164,48.234 45.207,42.217 59.668,42.217
+						59.668,38.394 49.049,38.394 52.944,34.517 59.668,34.517 59.668,30.658 56.821,30.658 59.946,27.551 "/>
+				</svg>
+			</a>
+		</div>
+	</div>	
+
+	<div class="wrapper_section strategic">
+		<div class="inner-container">
+			<div class="first-text">
+				<div>
+					<span class="guion">___</span>
+					<p>We use <span>machine</span> <span>learning</span> to <br>
+										<span>eliminate wokooning disorder</span> ,<br> 
+										steering them towards the <span>digital world</span><br>
+										 we are transforming into.<br>
+										</p>
+				</div>
+			</div>
+			<p class="approach">Our exceptional approach is helping people get familiar with digital technology:</p>
+			<div class="icon">
+				<svg width="59px" height="69px" viewBox="0 0 59 69" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+			        <g transform="translate(-240.000000, -924.000000)">
+			            <g transform="translate(222.000000, 850.000000)">
+			                <g transform="translate(19.000000, 75.000000)">
+			                    <g transform="translate(0.000000, 0.514508)" stroke="#2325FD">
+			                        <polygon stroke-width="2" points="0 16.8680766 28.1545455 0.490492208 56.3065 16.8680766 56.3065 49.6188948 28.1545455 65.994739 0 49.6188948"></polygon>
+			                        <polyline points="56.3067591 16.8680766 28.1539409 33.2439208 28.1539409 65.994739"></polyline>
+			                        <path d="M0,16.8680766 L28.1545455,33.2439208"></path>
+			                    </g>
+			                    <polygon fill="#FFFFFF" points="42.2304364 41.9451325 28.1540273 50.1330545 14.0758909 41.9451325 14.0758909 25.5710286 28.1540273 17.3822364 42.2304364 25.5710286"></polygon>
+			                    <polygon stroke="#2325FD" points="42.2304364 41.9451325 28.1540273 50.1330545 14.0758909 41.9451325 14.0758909 25.5710286 28.1540273 17.3822364 42.2304364 25.5710286"></polygon>
+			                    <polyline stroke="#2325FD" points="14.0762364 41.9451325 28.1543727 33.7589506 28.1543727 17.3822364"></polyline>
+			                    <g transform="translate(27.636364, 33.579443)">
+			                        <path d="M14.5940727,8.36568961 L0.517663636,0.179507792" fill="#FFFFFF"></path>
+			                        <path d="M14.5940727,8.36568961 L0.517663636,0.179507792" stroke="#2325FD"></path>
+			                    </g>
+			                </g>	
+			            </g>
+			        </g>
+			    </g>
+				</svg>
+				<span data-title="AI" data-subtitle="Speech Recognition">AI</span>
+				<p>Enabling a computer to identify and respond to the sounds produced in human speech.</p>
+			</div>
+			<div class="icon">
+				<svg width="60px" height="69px" viewBox="0 0 60 69" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+				    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+				        <g transform="translate(-399.000000, -924.000000)" stroke="#2325FD">
+				            <g transform="translate(222.000000, 850.000000)">
+				                <g transform="translate(178.000000, 75.000000)">
+				                    <path d="M19.6551612,28.2864429 L47.8587433,11.9193"></path>
+				                    <path d="M10.148009,55.6292299 L38.4788448,39.1872558"></path>
+				                    <g transform="translate(0.000000, 0.478832)">
+				                        <polygon stroke-width="2" points="0.865671642 49.6280312 0.865671642 16.8937455 29.0675224 0.525732468 57.2711045 16.8946156 57.2711045 49.6280312 29.0675224 65.995174"></polygon>
+				                        <path d="M29.0574806,44.1769286 L0.841779104,27.8036948"></path>
+				                        <path d="M57.281406,38.6995481 L29.0674358,22.3254442"></path>
+				                    </g>
+				                    <path d="M19.6500537,39.2123156 L19.6500537,6.46497792"></path>
+				                    <path d="M38.4547791,61.0523143 L38.4547791,28.3049766"></path>
+				                    <polygon points="38.4902716 28.2719987 38.4902716 39.2077909 29.0674358 44.6765571 19.6446 39.2077909 19.6446 28.2719987 29.0674358 22.8041026"></polygon>
+				                </g>
+				            </g>
+				        </g>
+				    </g>
+				</svg>
+				<span data-title="NLP" data-subtitle="Audio Signal Synthesis">NLP</span>
+				<p>Converting audio signal with electronic manipulation.</p>
+			</div>
+			<div class="icon">
+				<svg width="59px" height="68px" viewBox="0 0 59 68" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+				    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+				        <g transform="translate(-560.000000, -925.000000)" stroke="#2325FD">
+				            <g transform="translate(222.000000, 850.000000)">
+				                <g transform="translate(339.000000, 76.000000)">
+				                    <polygon stroke-width="2" points="0 16.4834132 28.1536818 0.134518421 56.3065 16.4834132 56.3065 49.17165 28.1536818 65.5170711 0 49.17165"></polygon>
+				                    <polygon points="35.1898136 36.9142342 28.1529045 40.9984184 21.1168591 36.9142342 21.1168591 28.7397868 28.1529045 24.6564711 35.1898136 28.7397868"></polygon>
+				                    <g transform="translate(0.000000, 11.809745)">
+				                        <polyline points="56.3067591 25.1240289 28.1530773 41.4546868 10.5487136 31.2351079 10.5495773 23.0537132 27.9829409 12.9513711"></polyline>
+				                        <polyline points="0 16.8884447 28.1536818 0.578628947 45.7580455 10.7973395 45.7580455 18.9761289 28.1536818 29.1722605"></polyline>
+				                    </g>
+				                </g>
+				            </g>
+				        </g>
+				    </g>
+				</svg>
+				<span data-title="Captions" data-subtitle="Live Broadcasting">Captions</span>
+				<p>Helping youtube give better captions during live broadcasting.</p>
+			</div>
+			<div class="icon">
+				<svg width="59px" height="69px" viewBox="0 0 59 69" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+				    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+				        <g transform="translate(-720.000000, -924.000000)" stroke="#2325FD">
+				            <g transform="translate(222.000000, 850.000000)">
+				                <g transform="translate(499.000000, 75.000000)">
+				                    <g transform="translate(0.000000, 0.515492)">
+				                        <polygon stroke-width="2" points="0 16.9003538 28.1545455 0.491430769 56.3065 16.9003538 56.3065 49.713841 28.1545455 66.1210205 0 49.713841"></polygon>
+				                        <path d="M41.8863636,8.28205128 L41.8863636,57.974359" stroke-linecap="square"></path>
+				                        <path d="M14.25,8.28205128 L14.25,57.974359" stroke-linecap="square"></path>
+				                        <path d="M28.0681818,0.7922 L28.0681818,66.2000591" stroke-linecap="square"></path>
+				                        <path d="M0.431818182,49.6127128 L55.7045455,17.3563026" stroke-linecap="square"></path>
+				                        <path d="M0.431818182,17.3563026 L56.5681818,49.6127128" stroke-linecap="square"></path>
+				                        <path d="M14.25,8.63835385 L56.5681818,33.9204051" stroke-linecap="square"></path>
+				                        <path d="M0.431818182,33.0486103 L41.8863636,8.63835385" stroke-linecap="square"></path>
+				                        <path d="M41.8863636,57.4588667 L0.431818182,33.0486103" stroke-linecap="square"></path>
+				                        <path d="M14.25,57.4588667 L55.7045455,33.9204051" stroke-linecap="square"></path>
+				                    </g>
+				                </g>
+				            </g>
+				        </g>
+				    </g>
+				</svg>
+				<span data-title="Smart Voice Assistant" data-subtitle="Boosting Productivity">Smart Voice Assistant</span>
+				<p>Smart Voice Assistant is pretty useful personal voice command app, which lets you control your phone by voice.</p>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- <div class="wrapper_section work">
+		<div class="inner-container flexslider">
+			<div class="counter-slides"></div>
+			<ul class="slides">
+				
+				
+							    
+			    			    					
+				
+						<li>
+							<img class="poster" src="../wp-content/uploads/2018/03/Food_beverage_01.jpg">
+							<div class="producto-container">
+								<h2 class="first">_Food and Beverage</h2>
+								<p class="first"><p><span style="font-weight: 400;">In an era of over informed consumers, companies have to rapidly adjust to the spread of sophisticated purchase behavior, decrease of loyalty towards brands, changes in government regulations and the ceaseless search for convenience and health oriented practices.</span></p>
+</p>
+								<a class="first" href="http://noescomun.com/our-work#food-and-beverage">DISCOVER MORE<span>+</span></a>
+							</div>
+						</li>
+									
+				
+						<li>
+							<img class="poster" src="../wp-content/uploads/2018/03/toolkit_01.jpg">
+							<div class="producto-container">
+								<h2 class="first">_Uncommon Toolkit</h2>
+								<p class="first"><p>The Uncommon toolkit is an effort to convey in a brief and actionable way the basic principles and the key tasks to carry out a design process.</p>
+</p>
+								<a class="first" href="http://noescomun.com/toolkit/">DISCOVER MORE<span>+</span></a>
+							</div>
+						</li>
+									
+				
+						<li>
+							<img class="poster" src="../wp-content/uploads/2018/03/clientes_01.jpg">
+							<div class="producto-container">
+								<h2 class="first">_Clients</h2>
+								<p class="first"><p><span style="font-weight: 400;">We partner up with our clientes to make their organizations grow by designing new solutions that exceed expectations. </span><span style="font-weight: 400;">We have worked with clients in financial services, FMCG, retail, education, health, transport and the manufacturing industry.</span></p>
+</p>
+								<a class="first" href="http://noescomun.com/our-work/">DISCOVER MORE<span>+</span></a>
+							</div>
+						</li>
+									
+				
+						<li>
+							<img class="poster" src="../wp-content/uploads/2018/03/reportes_01.jpg">
+							<div class="producto-container">
+								<h2 class="first">_In-house Insight</h2>
+								<p class="first"><p><span style="font-weight: 400;">Our reports are the result of internal questioning translated into new trends and business opportunities discovered along our years of experience as Design Strategists.</span></p>
+</p>
+								<a class="first" href="http://noescomun.com/our-ideas/">DISCOVER MORE<span>+</span></a>
+							</div>
+						</li>
+									
+				
+						<li>
+							<img class="poster" src="../wp-content/uploads/2018/03/medium_01.jpg">
+							<div class="producto-container">
+								<h2 class="first">_Medium</h2>
+								<p class="first"><p><span style="font-weight: 400;">If you are a curious person and want to be up to date with the latest developments in design, futures, trends and innovation, this is your media.</span></p>
+</p>
+								<a class="first" href="https://medium.com/uncommon">DISCOVER MORE<span>+</span></a>
+							</div>
+						</li>
+					
+											  </ul>
+			<a href="#" class="next">
+				<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					 width="40px" height="24px" viewBox="0 0 40 24" enable-background="new 0 0 40 24" xml:space="preserve">
+					<g>
+						<g transform="translate(-922.000000, -1462.000000)">
+							<g transform="translate(923.000000, 1463.000000)">
+								<g>
+									<path fill="#2325FD" d="M38,11.75H0c-0.414,0-0.75-0.336-0.75-0.75s0.336-0.75,0.75-0.75h38c0.414,0,0.75,0.336,0.75,0.75
+										S38.414,11.75,38,11.75z"/>
+								</g>
+								<g>
+									<path fill="#2325FD" d="M38.001,11.75c-0.232,0-0.461-0.107-0.607-0.309l-8-11c-0.244-0.335-0.17-0.804,0.165-1.047
+										c0.337-0.246,0.805-0.17,1.048,0.166l8,11c0.244,0.335,0.17,0.804-0.165,1.047C38.308,11.703,38.153,11.75,38.001,11.75z"/>
+								</g>
+								<g>
+									<path fill="#2325FD" d="M29.999,22.75c-0.152,0-0.307-0.047-0.44-0.144c-0.335-0.243-0.409-0.713-0.165-1.048l8-11
+										c0.243-0.334,0.71-0.41,1.048-0.166c0.335,0.244,0.409,0.712,0.165,1.047l-8,11C30.46,22.643,30.231,22.75,29.999,22.75z"/>
+								</g>
+							</g>
+						</g>
+					</g>
+				</svg>
+			</a>
+		</div>
+	</div> -->
+	<div class="wrapper_section newsletter">
+		<div class="inner-container">
+			<div>
+				#BeUnique
+			</div>
+			<div>
+				<span>___</span>
+				<p>Get the latest info<br>
+								about Wokoon.io</p>
+			</div>
+			<div class="newsletter-form-container">
+				<div class="newsletter-form-inner-container">
+					<label for="email">Enter your email</label>
+					<a href="#" id="enviar-email-button">
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+							 width="17px" height="10px" viewBox="0 0 17 10" enable-background="new 0 0 17 10" xml:space="preserve">
+							<g>
+								<g transform="translate(-924.000000, -1690.000000)">
+									<g transform="translate(925.000000, 1690.000000)">
+										<g>
+											<path fill="#2325FD" d="M15,5.25H0c-0.138,0-0.25-0.112-0.25-0.25S-0.138,4.75,0,4.75h15c0.138,0,0.25,0.112,0.25,0.25
+												S15.138,5.25,15,5.25z"/>
+										</g>
+										<g>
+											<path fill="#2325FD" d="M15,5.25c-0.085,0-0.168-0.043-0.215-0.122l-3-5c-0.07-0.118-0.032-0.272,0.086-0.343
+												c0.12-0.073,0.272-0.033,0.344,0.086l3,5c0.07,0.118,0.032,0.272-0.086,0.343C15.088,5.239,15.044,5.25,15,5.25z"/>
+										</g>
+										<g>
+											<path fill="#2325FD" d="M12,10.25c-0.044,0-0.088-0.012-0.129-0.035c-0.118-0.071-0.156-0.225-0.086-0.344l3-5
+												c0.07-0.119,0.223-0.159,0.344-0.086c0.118,0.071,0.156,0.225,0.086,0.343l-3,5C12.168,10.207,12.085,10.25,12,10.25z"/>
+										</g>
+									</g>
+								</g>
+							</g>
+						</svg>
+					</a>
+					<input id="email" type="text" name="email">
+
+					<br/>
+
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- <div class="wrapper_section watches">
+		<div class="">
+			<a href="mexico/index.html">
+				<svg width="120" height="120">
+					<defs>
+						<mask id="mask-me">
+							<circle cx="60" cy="60" r="36" fill="white" />
+						</mask>
+					</defs>
+					<text class="time_" x="70" y="64" transform="rotate(-90 60,60)" fill="black" style="letter-spacing:.15rem;"></text>
+					<circle cx="60" cy="60" r="36" fill="black" />
+					<image class="seconds" xlink:href="../wp-content/themes/uncommon/images/clock_cdmx%403x.png" x="53" y="62" height="24px" width="34px"/>
+					<circle cx="60" cy="60" r="3" fill="white" />
+					<text class="time" x="70" y="64" transform="rotate(-90 60,60)" fill="white" style="letter-spacing:.15rem;" mask="url(#mask-me)"></text>
+				</svg>
+				<span>CDMX</span>
+			</a>
+		</div>
+		<div class="">
+			<a href="madrid/index.html">
+				<svg width="120" height="120">
+					<circle cx="60" cy="60" r="36" fill="#78e6e9" />
+					<image class="seconds" xlink:href="../wp-content/themes/uncommon/images/clock_mad%403x.png" x="36" y="30" height="86px" width="50px"/>
+					<circle cx="60" cy="60" r="3" fill="black" />
+					<text class="time" x="70" y="64" transform="rotate(-90 60,60)" fill="black" style="letter-spacing:.15rem;"></text>
+				</svg>
+				<span>MAD</span>
+			</a>
+		</div>
+		<div class="">
+			<a href="buenos-aires/index.html">
+				<svg width="120" height="120">
+					<circle cx="60" cy="60" r="36" fill="#535bfb" />
+					<image class="seconds" xlink:href="../wp-content/themes/uncommon/images/clock_bsas%403x.png" x="60" y="60" height="30px" width="30px"/>
+					<circle cx="60" cy="60" r="3" fill="black" />
+					<text class="time" x="70" y="64" transform="rotate(-90 60,60)" fill="black" style="letter-spacing:.15rem;"></text>
+				</svg>
+				<span>Bs.As.</span>
+			</a>
+		</div>
+	</div>
+ -->
+		<footer>
+		<div class="inner-container">
+	<span class="separation"></span>
+			<ul>
+				<li><a target="_blank" href="https://www.facebook.com/noescomun/">Facebook</a></li>
+				<span class="sep">:</span>
+				<li><a target="_blank" href="https://www.instagram.com/noescomun/?hl=es-la">Instagram</a></li>
+				<span class="sep">:</span>
+				<li class="last"><a target="_blank" href="https://www.linkedin.com/company/3783561/">LinkedIn</a></li>
+			</ul>
+
+			<div class="copyright">
+				<h2 style="font-size: 12px;">TEAM ENVISION <span> &copy;</span></h2>
+				2018
+			</div>
+
+			
+		</div>
+	</footer>
+
+	<!-- <div id="awwwards" style="position: fixed; z-index: 9999999999; transform: translateY(-50%); top: 50%;  right: 0"><a href="https://www.awwwards.com/sites/uncommon" target="_blank"><svg width="53.08" height="171.358"><path class="js-color-bg" fill="black" d="M0 0h53.08v171.358H0z"></path><g class="js-color-text" fill="white"><path d="M20.047 153.665v-1.9h3.888v-4.093h-3.888v-1.9h10.231v1.9h-4.59v4.093h4.59v1.9zM29.898 142.236c-.331.565-.784.997-1.359 1.294s-1.222.446-1.944.446c-.721 0-1.369-.149-1.943-.446a3.316 3.316 0 0 1-1.36-1.294c-.331-.564-.497-1.232-.497-2.002s.166-1.438.497-2.002a3.316 3.316 0 0 1 1.36-1.294c.574-.297 1.223-.445 1.943-.445.723 0 1.369.148 1.944.445a3.307 3.307 0 0 1 1.359 1.294c.331.564.497 1.232.497 2.002s-.166 1.438-.497 2.002m-1.703-3.347c-.435-.33-.967-.496-1.601-.496-.633 0-1.166.166-1.601.496-.433.332-.649.78-.649 1.346 0 .564.217 1.013.649 1.345.435.331.968.497 1.601.497.634 0 1.166-.166 1.601-.497.435-.332.649-.78.649-1.345.001-.566-.214-1.014-.649-1.346M22.911 134.852v-1.813h1.186a3.335 3.335 0 0 1-.951-1.009 2.423 2.423 0 0 1-.352-1.271c0-.682.19-1.229.57-1.645.381-.413.932-.621 1.652-.621h5.262v1.812h-4.721c-.419 0-.727.096-.921.285-.195.19-.292.447-.292.769 0 .302.115.58.35.833.234.254.577.458 1.03.613.454.156.993.234 1.616.234h2.938v1.813h-7.367zM29.898 125.136a3.314 3.314 0 0 1-1.359 1.294c-.575.297-1.222.445-1.944.445-.721 0-1.369-.148-1.943-.445a3.322 3.322 0 0 1-1.36-1.294c-.331-.565-.497-1.232-.497-2.002 0-.771.166-1.438.497-2.003a3.313 3.313 0 0 1 1.36-1.293c.574-.297 1.223-.446 1.943-.446.723 0 1.369.149 1.944.446s1.028.728 1.359 1.293.497 1.232.497 2.003c.001.769-.166 1.436-.497 2.002m-1.703-3.347c-.435-.331-.967-.497-1.601-.497-.633 0-1.166.166-1.601.497-.433.331-.649.778-.649 1.345 0 .564.217 1.013.649 1.344.435.332.968.498 1.601.498.634 0 1.166-.166 1.601-.498.435-.331.649-.779.649-1.344.001-.567-.214-1.014-.649-1.345M22.911 117.75v-1.812h1.199c-.419-.265-.742-.586-.972-.966s-.345-.784-.345-1.213c0-.272.05-.569.146-.892l1.682.336a1.429 1.429 0 0 0-.205.76c0 .576.261 1.048.783 1.418.521.37 1.342.557 2.461.557h2.617v1.812h-7.366zM29.812 111.252c-.391.511-.857.851-1.403 1.016l-.776-1.446c.381-.138.68-.329.893-.577.215-.249.321-.544.321-.885a1.2 1.2 0 0 0-.168-.658c-.112-.175-.294-.263-.548-.263-.225 0-.406.105-.548.313-.142.21-.291.534-.446.973-.019.068-.058.17-.117.307-.224.565-.506 1.004-.848 1.315-.34.313-.779.467-1.314.467-.381 0-.727-.102-1.039-.306a2.185 2.185 0 0 1-.744-.84 2.554 2.554 0 0 1-.279-1.207c0-.497.105-.949.314-1.359.211-.408.506-.725.886-.949l.993 1.082c-.43.292-.644.686-.644 1.184a.84.84 0 0 0 .154.504.471.471 0 0 0 .401.212c.176 0 .338-.103.49-.307.15-.205.334-.604.547-1.199.205-.564.474-1.001.805-1.308.332-.308.756-.46 1.271-.46.721 0 1.299.229 1.732.687s.65 1.057.65 1.797c.001.759-.194 1.396-.583 1.907M35.481 17.006l-4.782 14.969h-3.266l-2.584-9.682-2.584 9.682h-3.268l-4.782-14.969h3.713l2.673 10.276 2.525-10.276h3.445l2.524 10.276 2.674-10.276zM37.978 27.163c1.426 0 2.496 1.068 2.496 2.495 0 1.425-1.07 2.495-2.496 2.495-1.425 0-2.494-1.07-2.494-2.495-.001-1.427 1.069-2.495 2.494-2.495"></path></g></svg></a></div>
+
+ -->
+
+		<aside class="side-nav">
+		<nav>
+			<ul>
+          	<li><a href="/" title="What we do" class="">What we do</a></li>
+          			<li><a href="/demo" title="Our work" class="">Demos</a></li>
+          			<li><a href="/" title="Our ideas" class="">Our ideas</a></li>
+          			<li><a href="/" title="Who we are" class="">Who we are</a></li>
+          			<li><a href="/" title="Who we are" class="">Blog</a></li>
+			</ul>
+		</nav>
+	</aside>	<aside class="side-logo">
+		<a href="http://noescomun.com/">
+			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="416px" height="70px" viewBox="0 0 416 70" enable-background="new 0 0 416 70" xml:space="preserve">
+				 <path fill-rule="evenodd" clip-rule="evenodd" fill="#2325FD" d="M113.366,42.28c0,4.226-2.574,6.732-6.496,6.732
+					c-3.949,0-6.447-2.506-6.447-6.732V18.491h-7.297v24.057c0,7.763,6.08,12.839,13.744,12.839c7.646,0,13.725-5.076,13.725-12.839
+					V18.491h-7.229V42.28z"/>
+				 <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#2325FD" points="152.209,40.901 137.409,18.491 130.918,18.491
+					130.918,55.082 138.215,55.082 138.215,32.619 152.979,55.082 159.497,55.082 159.497,18.491 152.209,18.491 "/>
+				 <path fill-rule="evenodd" clip-rule="evenodd" fill="#2325FD" d="M182.928,24.552c3.66,0,5.551,2.261,6.285,5.192h7.403
+					c-1.325-7.663-6.787-11.576-13.744-11.576c-4.095,0-7.448,1.45-10.062,4.016c-3.789,3.702-3.686,8.277-3.686,14.598
+					c0,6.321-0.104,10.888,3.686,14.603c2.613,2.561,5.967,4.012,10.062,4.012c6.912,0,12.419-3.908,13.744-11.568h-7.403
+					c-0.734,2.928-2.625,5.184-6.285,5.184c-1.992,0-3.609-0.715-4.656-1.898c-1.424-1.539-1.844-3.285-1.844-10.331
+					c0-7.038,0.42-8.783,1.844-10.328C179.319,25.268,180.936,24.552,182.928,24.552"/>
+				 <path fill-rule="evenodd" clip-rule="evenodd" fill="#2325FD" d="M217.622,18.169c-4.248,0-7.494,1.45-10.117,4.015
+					c-3.779,3.702-3.672,8.277-3.672,14.599c0,6.321-0.107,10.895,3.672,14.602c2.623,2.57,5.869,4.002,10.117,4.002
+					c4.252,0,7.439-1.432,10.072-4.002c3.76-3.707,3.725-8.281,3.725-14.602c0-6.322,0.035-10.897-3.725-14.599
+					C225.062,19.619,221.874,18.169,217.622,18.169 M222.278,47.064c-1.039,1.178-2.66,1.947-4.656,1.947s-3.672-0.77-4.709-1.947
+					c-1.424-1.543-1.787-3.244-1.787-10.282c0-7.033,0.363-8.739,1.787-10.27c1.037-1.191,2.713-1.961,4.709-1.961
+					s3.617,0.77,4.656,1.961c1.422,1.531,1.844,3.237,1.844,10.27C224.122,43.82,223.7,45.521,222.278,47.064"/>
+				 <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#2325FD" points="257.983,38.278 248.241,18.491 241.052,18.491
+					241.052,55.082 248.341,55.082 248.341,33.748 255.513,47.629 260.454,47.629 267.571,33.748 267.571,55.082 274.868,55.082
+					274.868,18.491 267.679,18.491 "/>
+				 <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#2325FD" points="302.696,38.278 292.954,18.491 285.765,18.491
+					285.765,55.082 293.044,55.082 293.044,33.748 300.243,47.629 305.157,47.629 312.284,33.748 312.284,55.082 319.591,55.082
+					319.591,18.491 312.396,18.491 "/>
+				 <path fill-rule="evenodd" clip-rule="evenodd" fill="#2325FD" d="M343.003,18.169c-4.248,0-7.494,1.45-10.107,4.015
+					c-3.787,3.702-3.68,8.277-3.68,14.599c0,6.321-0.107,10.895,3.68,14.602c2.613,2.57,5.859,4.002,10.107,4.002
+					c4.254,0,7.439-1.432,10.055-4.002c3.787-3.707,3.742-8.281,3.742-14.602c0-6.322,0.045-10.897-3.742-14.599
+					C350.442,19.619,347.257,18.169,343.003,18.169 M347.667,47.064c-1.047,1.178-2.672,1.947-4.664,1.947
+					c-1.996,0-3.662-0.77-4.723-1.947c-1.41-1.543-1.773-3.244-1.773-10.282c0-7.033,0.363-8.739,1.773-10.27
+					c1.061-1.191,2.727-1.961,4.723-1.961c1.992,0,3.617,0.77,4.664,1.961c1.406,1.531,1.828,3.237,1.828,10.27
+					C349.495,43.82,349.073,45.521,347.667,47.064"/>
+				 <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#2325FD" points="387.858,18.491 387.858,40.901 373.077,18.491
+					366.573,18.491 366.573,55.082 373.864,55.082 373.864,32.619 388.634,55.082 395.138,55.082 395.138,18.491 "/>
+				 <path fill-rule="evenodd" clip-rule="evenodd" fill="#2325FD" d="M48.002,9.618c-14.98,0-27.14,12.092-27.14,26.985
+					c0,14.935,12.159,27.013,27.14,27.013c14.996,0,27.146-12.078,27.146-27.013C75.148,21.709,62.999,9.618,48.002,9.618
+					M48.002,59.662c-12.813,0-23.217-10.346-23.217-23.085c0-12.759,10.403-23.091,23.217-23.091c12.811,0,23.207,10.332,23.207,23.091
+					C71.209,49.316,60.813,59.662,48.002,59.662"/>
+				 <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#2325FD" points="57.178,24.812 51.305,30.658 36.417,30.658 36.417,34.517
+					47.428,34.517 43.533,38.394 36.417,38.394 36.417,42.217 39.688,42.217 36.399,45.494 39.164,48.234 45.207,42.217 59.668,42.217
+					59.668,38.394 49.049,38.394 52.944,34.517 59.668,34.517 59.668,30.658 56.821,30.658 59.946,27.551 "/>
+			</svg>
+		</a>
+	</aside>	<div class="menu-mobile">
+		<nav>
+			<ul>
+          		<li><a href="what-we-do/index.html" class="">What we do</a></li>
+          		<li><a href="our-work/index.html" class="">Our work</a></li>
+          		<li><a href="who-we-are/index.html" class="">Who we are</a></li>
+          		<li><a href="our-ideas/index.html" class="">Our ideas</a></li>
+			</ul>
+		</nav>
+	</div>	<a href="#" class="hamburger">
+		<svg height="32px" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+			<path fill="#fff" d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/>
+		</svg>
+	</a>	<a href="#" class="close">
+		<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+			<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+				<g transform="translate(-1.000000, -1.000000)" fill-rule="nonzero" fill="#fff">
+						<path d="M24,10 L0,10 C-1.104,10 -2,10.896 -2,12 C-2,13.104 -1.104,14 0,14 L24,14 C25.104,14 26,13.104 26,12 C26,10.896 25.104,10 24,10 Z" transform="translate(12.000000, 12.000000) rotate(-45.000000) translate(-12.000000, -12.000000) "></path>
+						<path d="M24,10 L0,10 C-1.104,10 -2,10.896 -2,12 C-2,13.104 -1.104,14 0,14 L24,14 C25.104,14 26,13.104 26,12 C26,10.896 25.104,10 24,10 Z" transform="translate(12.000000, 12.000000) rotate(-315.000000) translate(-12.000000, -12.000000) "></path>
+				</g>
+			</g>
+		</svg>
+	</a>	<svg width="59px" height="69px" viewBox="0 0 59 69" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<defs>
+			<filter id="filter">
+				<feFlood flood-color="white" result="white" />
+				<feFlood flood-color="red" result="flood1" />
+				<feFlood flood-color="limegreen" result="flood2" />
+				<feOffset in="SourceGraphic" dx="3" dy="0" result="off1a"/>
+				<feOffset in="SourceGraphic" dx="2" dy="0" result="off1b"/>
+				<feOffset in="SourceGraphic" dx="-3" dy="0" result="off2a"/>
+				<feOffset in="SourceGraphic" dx="-2" dy="0" result="off2b"/>
+				<feComposite in="flood1" in2="off1a" operator="in" result="comp1" />
+				<feComposite in="flood2" in2="off2a" operator="in" result="comp2" />
+				<feMerge x="0" width="100%" result="merge1">
+					<feMergeNode in="white" />
+					<feMergeNode in="comp1" />
+					<feMergeNode in="off1b" />
+					<animate attributeName="y" id="y" dur ="4s" values='104px; 104px; 30px; 105px; 30px; 2px; 2px; 50px; 40px; 105px; 105px; 20px; 6ßpx; 40px; 104px; 40px; 70px; 10px; 30px; 104px; 102px' keyTimes='0; 0.362; 0.368; 0.421; 0.440; 0.477; 0.518; 0.564; 0.593; 0.613; 0.644; 0.693; 0.721; 0.736; 0.772; 0.818; 0.844; 0.894; 0.925; 0.939; 1' repeatCount="indefinite" />
+					<animate attributeName="height" id="h" dur="4s" values='10px; 0px; 10px; 30px; 50px; 0px; 10px; 0px; 0px; 0px; 10px; 50px; 40px; 0px; 0px; 0px; 40px; 30px; 10px; 0px; 50px' keyTimes='0; 0.362; 0.368; 0.421; 0.440; 0.477; 0.518; 0.564; 0.593; 0.613; 0.644; 0.693; 0.721; 0.736; 0.772; 0.818; 0.844; 0.894; 0.925; 0.939; 1' repeatCount="indefinite" />
+				</feMerge>
+				<feMerge x="0" width="100%" y="60px" height="65px" result="merge2">
+					<feMergeNode in="white" />
+					<feMergeNode in="comp2" />
+					<feMergeNode in="off2b" />
+					<animate attributeName="y" id="y" dur ="4s" values='103px; 104px; 69px; 53px; 42px; 104px; 78px; 89px; 96px; 100px; 67px; 50px; 96px; 66px; 88px; 42px; 13px; 100px; 100px; 104px;' keyTimes='0; 0.055; 0.100; 0.125; 0.159; 0.182; 0.202; 0.236; 0.268; 0.326; 0.357; 0.400; 0.408; 0.461; 0.493; 0.513; 0.548; 0.577; 0.613; 1' repeatCount="indefinite" />
+					<animate attributeName="height" id="h" dur="4s" values='0px; 0px; 0px; 16px; 16px; 12px; 12px; 0px; 0px; 5px; 10px; 22px; 33px; 11px; 0px; 0px; 10px' keyTimes='0; 0.055; 0.100; 0.125; 0.159; 0.182; 0.202; 0.236; 0.268; 0.326; 0.357; 0.400; 0.408; 0.461; 0.493; 0.513;  1' repeatCount="indefinite" />
+				</feMerge>
+				<feMerge>
+					<feMergeNode in="SourceGraphic" />
+					<feMergeNode in="merge1" />
+					<feMergeNode in="merge2" />
+				</feMerge>
+			</filter>
+			<filter id="filter_01">
+				<feFlood flood-color="#f8f8f8" result="#f8f8f8" />
+				<feFlood flood-color="red" result="flood1" />
+				<feFlood flood-color="limegreen" result="flood2" />
+				<feOffset in="SourceGraphic" dx="3" dy="0" result="off1a"/>
+				<feOffset in="SourceGraphic" dx="2" dy="0" result="off1b"/>
+				<feOffset in="SourceGraphic" dx="-3" dy="0" result="off2a"/>
+				<feOffset in="SourceGraphic" dx="-2" dy="0" result="off2b"/>
+				<feComposite in="flood1" in2="off1a" operator="in" result="comp1" />
+				<feComposite in="flood2" in2="off2a" operator="in" result="comp2" />
+				<feMerge x="0" width="100%" result="merge1">
+					<feMergeNode in="#f8f8f8" />
+					<feMergeNode in="comp1" />
+					<feMergeNode in="off1b" />
+					<animate attributeName="y" id="y" dur="4s" values='104px; 104px; 30px; 105px; 30px; 2px; 2px; 50px; 40px; 105px; 105px; 20px; 6ßpx; 40px; 104px; 40px; 70px; 10px; 30px; 104px; 102px' keyTimes='0; 0.362; 0.368; 0.421; 0.440; 0.477; 0.518; 0.564; 0.593; 0.613; 0.644; 0.693; 0.721; 0.736; 0.772; 0.818; 0.844; 0.894; 0.925; 0.939; 1' repeatCount="indefinite" />
+					<animate attributeName="height" id="h" dur="4s" values='10px; 0px; 10px; 30px; 50px; 0px; 10px; 0px; 0px; 0px; 10px; 50px; 40px; 0px; 0px; 0px; 40px; 30px; 10px; 0px; 50px' keyTimes='0; 0.362; 0.368; 0.421; 0.440; 0.477; 0.518; 0.564; 0.593; 0.613; 0.644; 0.693; 0.721; 0.736; 0.772; 0.818; 0.844; 0.894; 0.925; 0.939; 1' repeatCount="indefinite" />
+				</feMerge>
+				<feMerge x="0" width="100%" y="60px" height="65px" result="merge2">
+					<feMergeNode in="#f8f8f8" />
+					<feMergeNode in="comp2" />
+					<feMergeNode in="off2b" />
+					<animate attributeName="y" id="y" dur="4s" values='103px; 104px; 69px; 53px; 42px; 104px; 78px; 89px; 96px; 100px; 67px; 50px; 96px; 66px; 88px; 42px; 13px; 100px; 100px; 104px;' keyTimes='0; 0.055; 0.100; 0.125; 0.159; 0.182; 0.202; 0.236; 0.268; 0.326; 0.357; 0.400; 0.408; 0.461; 0.493; 0.513; 0.548; 0.577; 0.613; 1' repeatCount="indefinite" />
+					<animate attributeName="height" id="h" dur="4s" values='0px; 0px; 0px; 16px; 16px; 12px; 12px; 0px; 0px; 5px; 10px; 22px; 33px; 11px; 0px; 0px; 10px' keyTimes='0; 0.055; 0.100; 0.125; 0.159; 0.182; 0.202; 0.236; 0.268; 0.326; 0.357; 0.400; 0.408; 0.461; 0.493; 0.513;  1' repeatCount="indefinite" />
+				</feMerge>
+				<feMerge>
+					<feMergeNode in="SourceGraphic" />
+					<feMergeNode in="merge1" />
+					<feMergeNode in="merge2" />
+				</feMerge>
+			</filter>
+			<filter id="filter_02">
+	          <feFlood flood-color="#e6e6fb" result="#e6e6fb" />
+	          <feFlood flood-color="red" result="flood1" />
+	          <feFlood flood-color="limegreen" result="flood2" />
+	          <feOffset in="SourceGraphic" dx="3" dy="0" result="off1a"/>
+	          <feOffset in="SourceGraphic" dx="2" dy="0" result="off1b"/>
+	          <feOffset in="SourceGraphic" dx="-3" dy="0" result="off2a"/>
+	          <feOffset in="SourceGraphic" dx="-2" dy="0" result="off2b"/>
+	          <feComposite in="flood1" in2="off1a" operator="in" result="comp1" />
+	          <feComposite in="flood2" in2="off2a" operator="in" result="comp2" />
+	          <feMerge x="0" width="100%" result="merge1">
+	            <feMergeNode in="#e6e6fb" />
+	            <feMergeNode in="comp1" />
+	            <feMergeNode in="off1b" />
+	            <animate attributeName="y" id="y" dur ="4s" values='104px; 104px; 30px; 105px; 30px; 2px; 2px; 50px; 40px; 105px; 105px; 20px; 6ßpx; 40px; 104px; 40px; 70px; 10px; 30px; 104px; 102px' keyTimes='0; 0.362; 0.368; 0.421; 0.440; 0.477; 0.518; 0.564; 0.593; 0.613; 0.644; 0.693; 0.721; 0.736; 0.772; 0.818; 0.844; 0.894; 0.925; 0.939; 1' repeatCount="indefinite" />
+	            <animate attributeName="height" id="h" dur="4s" values='10px; 0px; 10px; 30px; 50px; 0px; 10px; 0px; 0px; 0px; 10px; 50px; 40px; 0px; 0px; 0px; 40px; 30px; 10px; 0px; 50px' keyTimes='0; 0.362; 0.368; 0.421; 0.440; 0.477; 0.518; 0.564; 0.593; 0.613; 0.644; 0.693; 0.721; 0.736; 0.772; 0.818; 0.844; 0.894; 0.925; 0.939; 1' repeatCount="indefinite" />
+	          </feMerge>
+	          <feMerge x="0" width="100%" y="60px" height="65px" result="merge2">
+	            <feMergeNode in="#e6e6fb" />
+	            <feMergeNode in="comp2" />
+	            <feMergeNode in="off2b" />
+	            <animate attributeName="y" id="y" dur ="4s" values='103px; 104px; 69px; 53px; 42px; 104px; 78px; 89px; 96px; 100px; 67px; 50px; 96px; 66px; 88px; 42px; 13px; 100px; 100px; 104px;' keyTimes='0; 0.055; 0.100; 0.125; 0.159; 0.182; 0.202; 0.236; 0.268; 0.326; 0.357; 0.400; 0.408; 0.461; 0.493; 0.513; 0.548; 0.577; 0.613; 1' repeatCount="indefinite" />
+	            <animate attributeName="height" id="h" dur="4s" values='0px; 0px; 0px; 16px; 16px; 12px; 12px; 0px; 0px; 5px; 10px; 22px; 33px; 11px; 0px; 0px; 10px' keyTimes='0; 0.055; 0.100; 0.125; 0.159; 0.182; 0.202; 0.236; 0.268; 0.326; 0.357; 0.400; 0.408; 0.461; 0.493; 0.513;  1' repeatCount="indefinite" />
+	          </feMerge>
+	          <feMerge>
+	            <feMergeNode in="SourceGraphic" />
+	            <feMergeNode in="merge1" />
+	            <feMergeNode in="merge2" />
+	          </feMerge>
+        	</filter>
+		</defs>
+	</svg>	
+	<script type="text/javascript">
+		var template_directory_uri = "http://noescomun.com/wp-content/themes/uncommon";
+		var site_url = "http://noescomun.com/";
+	</script>
+	<script type="text/javascript" src="{{url_for('static' ,filename='js/modernizrffaf.js') }}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+
+	<script type="text/javascript" src="{{url_for('static' ,filename='js/jquery.flexslider-minffaf.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static' ,filename='js/jquery.mousewheelffaf.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static' ,filename='js/TweenMax.minffaf.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static' ,filename='js/TimelineMax.minffaf.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static' ,filename='js/ScrollMagicffaf.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static' ,filename='js/plugins/animation.gsapffaf.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static' ,filename='js/plugins/debug.addIndicatorsffaf.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static' ,filename='js/glitch-canvas-browser.minffaf.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static' ,filename='js/moment.minffaf.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static' ,filename='js/moment-timezone-with-data.minffaf.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static' ,filename='js/Utilsffaf.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static' ,filename='js/Commonffaf.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static' ,filename='js/GlitchHeaderffaf.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static' ,filename='js/game.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static' ,filename='js/pong.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static' ,filename='js/home.js')}}"></script>
+		</body>
+
+</html>	
